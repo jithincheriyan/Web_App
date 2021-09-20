@@ -5,6 +5,7 @@ import tensorflow as tf
 from transformers import *
 from transformers import BertTokenizer
 tf.random.set_seed(42)
+import urllib.request
 bert_tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
 bert_model = TFBertForSequenceClassification.from_pretrained("bert-base-uncased",num_labels=1)
 
@@ -12,9 +13,10 @@ def L1_test(comment):
     # add this to test a single comment
     # Comment_Text = []
     # Comment_Text.append(Comment)          # where Comment is the comment to be tested
-
+    url = 'https://github.com/jithincheriyan/Web_App/blob/master/Transformer_BERT_Model.h5'
+    filename = url.split('/')[-1]
     trained_model = TFBertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=1)
-    trained_model.load_weights("H:\\L1_Transformer_BERT_Model.h5")
+    trained_model.load_weights(urllib.request.urlretrieve(url, filename))
 
     test_input = bert_tokenizer.batch_encode_plus(comment,
                                                   add_special_tokens=True,
@@ -39,4 +41,8 @@ if __name__ == '__main__':
     st.title('Abuse detector')
     comment=st.text_input("Input the comment")
     st.text(L1_test([comment]))
+
+
+
+
 
