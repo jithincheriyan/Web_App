@@ -1,4 +1,4 @@
-Transfomer model....Level 1 BERT model....Best model to detect Regex and PAPI
+Transfomer model....Level 1 BERT model....Best model to detect RO comments
 
 Need to set the threshold to find the label
 Trained file: BERT_Training_Data_Augmementd_V3
